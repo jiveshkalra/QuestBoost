@@ -3,6 +3,11 @@
       <!-- ===== CSS ===== -->
       <link rel="stylesheet" href="{{url_for('static',filename='styles/base.css')}}">
       <style>
+        .content{
+          position: relative;
+          /* padding-bottom: 100px; */
+          min-height: 100vh;
+        }
       </style>
       <!-- <link rel="stylesheet" href="./src/css/main.css"> -->
       <script src="https://cdn.tailwindcss.com"></script>
@@ -96,7 +101,17 @@
               }
           });
       </script>
-    {% block content %}{% endblock%}
+      <div class="content">
+        {% block content %}{% endblock%}
+      </div>
+    <style>
+      footer{
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        
+      }
+    </style>
     <footer class="body-font foot">
       <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <a class="flex title-font font-medium items-center justify-center logo">

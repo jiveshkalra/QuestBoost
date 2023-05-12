@@ -2,9 +2,6 @@
     {% extends "components/base.html" %} {% block title %} QuestBoost {% endblock %}
     {% block content %}
     <style>
-        /* body {
-            background: #073b4c;
-        } */
     
         .heading {
             color: #000;
@@ -86,7 +83,12 @@
         }
         #query {
             min-height: 100px; /* adjust to suit your needs */
-        } 
+            font-size: 16px;
+        }
+        #query::placeholder{
+            text-align: center;
+            font-size: 20px;
+        }
         .divider{
             height: 2px;
             border: none;
@@ -97,7 +99,12 @@
             border: none;
             background-color: #ffff;
         }
-        
+        .content_header{
+            color: #343947;
+        }
+        .dark .content_header{
+            color: #fff;
+        }
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,200,1,200" />
@@ -125,8 +132,8 @@
             </form>
             {% if translated %}
             <hr class="w-full min-h-0 m-4 divider">
-                <span class="text-4xl text-white m-2 p-2">
-                    Rephrases
+                <span class="text-4xl content_header m-2 p-2">
+                    Translation
                 </span>
             <div class="result rounded-2xl border-2 m-4 p-4">
                 <span class="result_heading uppercase text-xl md:text-2xl lg:text-3xl">
