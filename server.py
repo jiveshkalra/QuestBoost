@@ -17,7 +17,7 @@ def question_answer_model(question,context):
     tokenizer = AutoTokenizer.from_pretrained(qa_model_name)
     nlp = pipeline('question-answering', model=model, tokenizer=tokenizer)
     QA_input = {'question':question,'context':context}
-    return nlp(QA_input)[0]
+    return nlp(QA_input)['answer']
     
 
 """ Open AI 
