@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from deep_translator import GoogleTranslator
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM,pipeline, AutoModelForQuestionAnswering
 import openai
 import json
 
@@ -10,6 +10,17 @@ openai.api_key = "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"
 
 app = Flask(__name__)
 
+def question_answer_model(question,context):
+    qa_model_name = "deepset/roberta-base-squad2"
+    # a) Load model & tokenizer
+    model = AutoModelForQuestionAnswering.from_pretrained(qa_model_name)
+    tokenizer = AutoTokenizer.from_pretrained(qa_model_name)
+    nlp = pipeline('question-answering', model=model, tokenizer=tokenizer)
+    QA_input = {'question':question,'context':context}
+    return nlp(QA_input)[0]
+    
+
+""" Open AI 
 def question_answer_model(question,context):
     response = openai.Completion.create(
         engine="davinci",
@@ -24,7 +35,7 @@ def question_answer_model(question,context):
     # Extract the answer from the API response
     answer = response.choices[0].text.strip()
     return answer
-
+"""
 def paraphrase(
     question,
     num_beams=5,
