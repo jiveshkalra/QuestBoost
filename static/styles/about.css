@@ -1,0 +1,49 @@
+
+
+.static-text {
+  color: #3258c1;
+}
+
+.to_type {
+  color: #c62828;
+}
+
+.features {
+  background: #118ab2;
+  color: #fff;
+  font-weight: 600;
+}
+
+.feature-product {
+  color: #000;
+}
+
+.features .f-text {
+  color: #000;
+  font-weight: 500;
+  font-size: large;
+}
+
+.dark .static-text {
+  color: #c2185b;
+}
+
+.dark .to_type {
+  color: #0891b2;
+}
+
+.dark .features {
+  background: #118ab2;
+  color: #fff;
+  font-weight: 600;
+}
+
+.dark .features .f-text {
+  color: #000;
+  font-weight: 500;
+  font-size: large;
+}
+
+.dark .feature-product {
+  color: #fff;
+}
