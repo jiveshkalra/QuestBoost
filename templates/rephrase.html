@@ -87,6 +87,16 @@
         #query {
             min-height: 100px; /* adjust to suit your needs */
         }
+        .divider{
+            height: 2px;
+            border: none;
+            background-color: #6e7893;
+        }
+        .dark .divider{
+            height: 2px;
+            border: none;
+            background-color: #ffff;
+        }
 
     </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,200" />
@@ -98,7 +108,7 @@
             </h1>
             <form class="flex items-center" method="GET" action="#">
                 <label for="query" class="sr-only">Rephrase</label>
-                <div class="relative w-full">
+                <div class="relative w-full m-4">
                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none language_icon">
                         <span class="material-symbols-outlined">
                             menu_book
@@ -114,10 +124,11 @@
                     <span class="sr-only">Rephrase</span>
                 </button>
             </form>
-            <br>
-            <br>
-            <br>
-                {% if query %}
+            {% if query %}
+            <hr class="w-full min-h-0 m-4 divider">
+                <span class="text-4xl text-white m-2 p-2">
+                    Rephrases
+                </span>
                     {% if paraphrases %}
                         {% for para in paraphrases %}
                         <div class="result rounded-2xl border-2 m-4 p-4">

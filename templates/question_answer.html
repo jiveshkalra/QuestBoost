@@ -110,7 +110,7 @@
                 Question Answering Model
             </h1>
             <form class="flex items-center" method="GET" action="#">
-                <div class="grid-2 w-full">
+                <div class="grid-2 w-full m-4">
                     <div>
                         <label for="question" class="inline-block text text-base sm:text-lg md:text-2lg lg:text-2xl mb-2 text-white">Question</label>
                         {% if question %}
@@ -140,19 +140,21 @@
                 </div>
             </div>
             </form>
-            <br>
-            <br>
-            <br>
+            
+            {% if answer %}
+            <hr class="w-full min-h-0 m-4 divider">
+                <span class="text-4xl text-white m-2 p-2">
+                    Answer 
+                </span>
                 <div class="result rounded-2xl border-2 m-4 p-4">
                     <span class="result_heading uppercase text-xl md:text-2xl lg:text-3xl">
-                        < ANSWER >
+                        < 1 >
                     </span>
                     <div class="result res-text rounded-2xl border-2 m-4 p-4 bg-white">
                         {{answer}}
                     </div>
                 </div>
-            <br />
-            <br />
+                {% endif %}
         </div>
     </div>
     <script>
