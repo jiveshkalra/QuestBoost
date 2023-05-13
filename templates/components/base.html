@@ -8,6 +8,37 @@
           /* padding-bottom: 100px; */
           min-height: 100vh;
         }
+        
+        .nav-links li ul.services {
+          position: absolute;         
+          /* width: 100%; */
+          height: 250px;
+          /* visibility: hidden;  */
+          /* opacity: 0; */
+          background: #242526;
+          border-color: #393838;
+          border-width: 2px;
+          border-top-width: 0px;
+        }
+
+        .nav-links li ul.services li {
+          color: #eee;
+          font-size: 14px;
+          width: 100%;
+          padding: 10px 0;
+          display: flex;
+          justify-content: center;
+        }
+
+        /* .nav-links li ul.services li:hover {
+          color: #ea3b50;
+        } */
+
+        .nav-links li:hover ul.services {
+          visibility: visible;
+          opacity: 1;
+        }
+
       </style>
       <!-- <link rel="stylesheet" href="./src/css/main.css"> -->
       <script src="https://cdn.tailwindcss.com"></script>
@@ -39,9 +70,14 @@
   
                   <ul class="nav-links">
                       <li><a href="./">Home</a></li>
-                      <li><a href="./translate">Translate</a></li>
-                      <li><a href="./rephrase">Rephrase</a></li>
-                      <li><a href="./question_answer">Question Answerer</a></li>
+                      <li><a href="">Services</a>
+                        <ul class="services">
+                          <li class="service-links"><a href="./translate">Translate</a></li>
+                          <li class="service-links"><a href="./rephrase">Rephrase</a></li>
+                          <li class="service-links"><a href="./question_answer">Question Answerer</a></li>
+                          <li class="service-links"><a href="./summarize">Summarize</a></li>
+                        </ul>
+                      </li>
                       <li><a href="./about">About</a></li>
                       <li><a href="./contact">Contact</a></li>
                       <!-- <li><a href="./login">Login</a></li> -->

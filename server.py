@@ -67,6 +67,17 @@ def paraphrase(
 
     return res
 
+def summarizer_model(query,max_length=1000):
+    tokenizer = AutoTokenizer.from_pretrained("pszemraj/pegasus-x-large-book-summary")
+    model_1 = AutoModelForSeq2SeqLM.from_pretrained("pszemraj/pegasus-x-large-book-summary")
+    input_ids = tokenizer.encode(query, truncation=True, padding=True, return_tensors="pt")
+    summary_ids = model_1.generate(input_ids, max_length=max_length, num_beams=4, early_stopping=True)
+    summary_1 = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+    model_2 = pipeline("summarization", model="philschmid/bart-large-cnn-samsum")
+    summary_2 = model_2(query)[0]['summary_text']
+    return [summary_1,summary_2]
+
+
 
 @app.route("/")
 @app.route("/index")
@@ -82,6 +93,12 @@ def about():
 def login():
     return render_template('login.html')
 
+
+@app.route("/contact")
+def contact():
+    return render_template('contact.html')
+
+
 @app.route("/question_answer")
 def question_answer():
     if request.method == "GET":
@@ -96,9 +113,16 @@ def question_answer():
             return render_template('question_answer.html',question=question,context=context,answer=answer)
 
     
-@app.route("/contact")
-def contact():
-    return render_template('contact.html')
+@app.route("/summarize")
+def summarize():
+    if request.method == "GET":
+        query = request.args.get('query')
+        if query == None:
+            return render_template('summarize.html')
+        else:
+            print(query.replace("%0D%0A", "\n"))
+            summary_list=summarizer_model(query,max_length=len(query))
+        return render_template('summarize.html',query=query,summary_list=summary_list)
 
 @app.route("/rephrase")
 def rephrase():

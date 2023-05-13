@@ -1,0 +1,167 @@
+<!-- <body class="bg-gradient-to-r from-green-500 via-sky-500 to-purple-500"> -->
+    {% extends "components/base.html" %} {% block title %} QuestBoost {% endblock %}
+    {% block content %}
+    <style>
+        /* body {
+            background: #073b4c;
+        } */
+    
+        .heading {
+            color: #000;
+        }
+    
+        .search_bar {
+            background: #dce4fd;
+            border-color: #c2185b;
+            border-width: 2px;
+        }
+    
+        .search_btn:focus-visible {
+            outline: 2px solid black;
+        }
+    
+        .dark .heading {
+            color: #c2185b;
+        }
+        .heading{
+            color: #4070F4;
+        }
+    
+        .search_bar{
+            border-color: #4070F4;
+            border-width: 2px;
+        }
+        .dark .search_bar {
+            background: #27292a;
+            border-color: #c2185b;
+            border-width: 2px;
+            color: white;
+        }
+    
+        .dark .search_btn {
+            background: #c2185b;
+        }
+    
+        .dark .search_btn:focus-visible {
+            outline: 2px solid black;
+        }
+    
+        .search_bar:focus {
+            outline: none;
+        }
+    
+        .result {
+            background: #dce4fd;
+            color: #525353;
+            border-color: #95a2c7;
+            border-width: 2px;
+        }
+        
+        .dark .result {
+            background: #27292a;
+            color: white;
+            border-color: white;
+            border-width: 2px;
+        }
+    
+        .result_heading {
+            color: #34383a;
+        }
+    
+        .dark .result_heading {
+            color: #e1e1e1;
+        }
+    
+        .dark .res-text {
+            background: #2c2f2f;
+        }
+        .icon{
+            color: #4070F4;
+        }
+        .dark .icon{
+            color:#c2185b;            
+        }
+        .search_bar::placeholder{
+            font-size: large;
+        }
+        #query {
+            min-height: 100px; /* adjust to suit your needs */
+            font-size: 16px;
+        }
+        #query::placeholder{
+            text-align: center;
+            font-size: 20px;
+        }
+        .divider{
+            height: 2px;
+            border: none;
+            background-color: #6e7893;
+        }
+        .dark .divider{
+            height: 2px;
+            border: none;
+            background-color: #ffff;
+        }
+        .context_heading{
+            color: #6e7893;
+        }
+        .dark .context_heading{
+            color: #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,200" />
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="flex flex-col text-center w-full m-4 sm:m-8 md:m-12 lg:m-20">
+            <h1 class="text-2xl md:text-3xl lg:text-5xl font-semibold lg:font-bold px-10 heading my-5 text-blue-700 search_title">
+                Summarize 
+            </h1>
+            <form class="flex items-center" method="GET" action="#">
+                <label for="query" class="sr-only">Summarize</label>
+                <div class="relative w-full m-4">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none icon">
+                        <span class="material-symbols-outlined">
+                            menu_book
+                            </span>
+                    </div>
+                    <textarea type="text" id="query" name="query" class=" text-sm rounded-lg block w-full pl-10 p-2.5 search_bar border-2 border-blue-700"
+                    placeholder="Summarize" required rows="4" cols="50">{{query}}</textarea>
+                    </div>
+                <button type="submit" class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:outline-none focus:ring-white search_btn">
+                    <span class="material-symbols-outlined">
+                        format_quote
+                        </span>
+                    <span class="sr-only">Summarize</span>
+                </button>
+            </form>
+            {% if query %}
+            <hr class="w-full min-h-0 m-4 divider">
+                <span class="text-4xl context_heading m-2 p-2">
+                    Summaries
+                </span>
+                    {% if summary_list %}
+                        {% for summary in summary_list %}
+                        <div class="result rounded-2xl border-2 m-4 p-4">
+                            <span class="result_heading uppercase text-xl md:text-2xl lg:text-3xl">
+                                < {% print(summary_list.index(summary)+1) %} >
+                            </span>
+                            <div class="result res-text rounded-2xl border-2 m-4 p-4 bg-white">
+                                {{summary}}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+            <br />
+            <br />
+        </div>
+    </div>
+    <script>
+    const textarea = document.querySelector('#query');
+    
+    textarea.addEventListener('input', () => {
+      textarea.rows = textarea.value.split('\n').length;
+    });
+    </script>
+
+    {% endblock %}
