@@ -96,10 +96,27 @@
             min-height: 100px; /* adjust to suit your needs */
         }
         #context::placeholder{
+            color: #4769ba;
             text-align: center;
             font-size: 20px;
         }
-
+        .dark #context::placeholder{
+            color: #91989c;
+        }
+        .input_question::placeholder{
+            text-align: center;
+            font-size: 20px;
+            color: #4769ba;
+        }
+        .dark .input_question::placeholder{
+            color : #91989c;
+        }
+        .text_labels{
+            color: #2b4ca7;
+        }
+        .dark .text_labels{
+            color: white;
+        }
     </style>
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,200" /> -->
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,200" /> -->
@@ -113,11 +130,12 @@
             <form class="flex items-center" method="GET" action="#">
                 <div class="grid-2 w-full m-4">
                     <div>
-                        <label for="question" class="inline-block text text-base sm:text-lg md:text-2lg lg:text-2xl mb-2 text-white">Question</label>
+                        
+                        <label for="question" class="text_labels inline-block text text-base sm:text-lg md:text-2lg lg:text-2xl mb-2 text-white">Question</label>
                         {% if question %}
-                            <input type="text" id="question" name="question" class=" text-sm rounded-lg block w-full pl-10 p-2.5 search_bar border-2 border-blue-700" placeholder="Question" value="{{question}}" required >
+                            <input type="text" id="question" name="question" class="input_question text-sm rounded-lg block w-full pl-10 p-2.5 search_bar border-2 border-blue-700" placeholder="Question" value="{{question}}" required >
                         {% else %}
-                            <input type="text" id="question" name="question" class=" text-sm rounded-lg block w-full pl-10 p-2.5 search_bar border-2 border-blue-700" placeholder="Question" required >
+                            <input type="text" id="question" name="question" class="input_question text-sm rounded-lg block w-full pl-10 p-2.5 search_bar border-2 border-blue-700" placeholder="Question" required >
                         {% endif %}
                     </div>
                     <br>
@@ -127,7 +145,7 @@
                                 title
                             </span>
                         </div>
-                        <label for="context" class="inline-block text text-base sm:text-lg md:text-2lg lg:text-2xl mb-2 text-white">Content</label>
+                        <label for="context" class="text_labels inline-block text text-base sm:text-lg md:text-2lg lg:text-2xl mb-2 text-white">Content</label>
                         <div class="flex w-full">
                             <textarea type="text" id="context" name="context" class=" text-sm rounded-lg block w-full pl-10 p-2.5 search_bar border-2 border-blue-700"
                             placeholder="Context" required rows="4" cols="50">{{context}}</textarea>
