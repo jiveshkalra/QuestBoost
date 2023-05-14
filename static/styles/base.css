@@ -92,7 +92,23 @@ nav .nav-bar .logo a {
   padding: 10px;
 }
 
-.nav-links li a::before {
+.nav-links> li> a::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background-color: var(--text-color);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.dropdown >ul>li:hover{
+  background-color: #393838;
+}
+.dropdown>ul> li:hover> a::before {
   content: "";
   position: absolute;
   left: 50%;
@@ -107,6 +123,9 @@ nav .nav-bar .logo a {
 }
 
 .nav-links li:hover a::before {
+  opacity: 1;
+}
+.dropdown >ul> li:hover a::before {
   opacity: 1;
 }
 
