@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,url_for
 from deep_translator import GoogleTranslator
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM,pipeline, AutoModelForQuestionAnswering
 import openai
@@ -9,6 +9,9 @@ openai.api_key = "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"
 
 
 app = Flask(__name__)
+
+def question_analyzer():
+    return url_for('json/english.json')
 
 def question_answer_model(question,context):
     qa_model_name = "deepset/roberta-base-squad2"
@@ -89,9 +92,6 @@ def home():
 def about():
     return render_template('about.html')
 
-@app.route("/login")
-def login():
-    return render_template('login.html')
 
 
 @app.route("/contact")
@@ -145,7 +145,16 @@ def translate():
             print(query.replace("%0D%0A", "\n"))
             translated = GoogleTranslator(source='auto', target='hi').translate(query.replace("%0D%0A", "\n"))
         return render_template('translate.html',query=query,translated=translated)
-        
+    
+@app.route("/question_analyzer",methods=["GET"])
+def question_analyzer():
+    if request.method == "GET":
+        subject = request.args.get('subject')
+        if subject == None:
+            return render_template('question_analyzer.html')
+        else:
+            return render_template('question_analyzer.html',subject=subject)
+
 
 if __name__=="__main__":
     app.run(debug=True)
