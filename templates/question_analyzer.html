@@ -158,21 +158,32 @@
                         <span class="sr-only">Question Paper Analyzer</span>
                     </button>
                 </form>
-            {% if subject and data %}
-            <hr class="w-full min-h-0 m-4 divider">
-                <span class="text-4xl content_header m-2 p-2">
-                    Most Important Questions
-                </span>
-            {% for key,value in data.items() %}
-            <div class="result rounded-2xl border-2 m-4 p-4">
-                <span class="result_heading uppercase text-xl md:text-2xl lg:text-3xl">
-                    < Marks: {{value[0]}} , Frequency {{value[1]}} >
-                </span>
-                <div class="result res-text rounded-2xl border-2 m-4 p-4 bg-white">
-                    Q: {{key}}
-                </div>
-            </div>
-            {% endfor %} 
+            {% if subject %}
+                <hr class="w-full min-h-0 m-4 divider">
+                    <span class="text-4xl content_header m-2 p-2">
+                        Most Important Questions
+                    </span>
+                {% if data %}
+                    {% for key,value in data.items() %}
+                        <div class="result rounded-2xl border-2 m-4 p-4">
+                            <span class="result_heading uppercase text-xl md:text-2xl lg:text-3xl">
+                                < Marks: {{value[0]}} , Frequency {{value[1]}} >
+                            </span>
+                            <div class="result res-text rounded-2xl border-2 m-4 p-4 bg-white">
+                                Q: {{key}}
+                            </div>
+                        </div>
+                    {% endfor %} 
+                {% else %}
+                    <div class="result rounded-2xl border-2 m-4 p-4">
+                        <span class="result_heading uppercase text-xl md:text-2xl lg:text-3xl">
+                            < NO DATA >
+                        </span>
+                    </div>
+                {% endif %}
+                {% if subject and not data %}
+                    NO DATA
+                {% endif %} 
             {% endif %}
         </div>
     </div>
