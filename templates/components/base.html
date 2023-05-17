@@ -9,15 +9,20 @@
           min-height: 100vh;
         }
         .dropdown{
-          display: none;
-        }
-        .nav-links li:hover .dropdown{
-          display: block;
           position: absolute;
+          top: 70px;
+          right: 10px;
           border-width: 2px;
           border-top-width: 0px;
           background-color: #4070f4;
           border-color: #6790ff;
+          display: none;
+        }
+        .nav-links li:hover .dropdown{
+          display: block;
+        }
+        .dropdown:hover{
+          display: block;
         }
         .dark .nav-links li .dropdown{
           background-color: #242526;
@@ -26,11 +31,17 @@
         .services{
           display: block;
           padding-bottom: 10px;
+          text-align: center;
         }
         .services li{
+          display: inline-block;
           margin: 10px;
           padding: 10px;
-          width: 150px;
+          width: 300px;
+        }
+        .nav-option{
+          display: flex;
+          align-items: center;
         }
       </style>
       <!-- <link rel="stylesheet" href="./src/css/main.css"> -->
@@ -56,22 +67,24 @@
                   </span>
               </div>
   
-              <div class="menu">
+              <div class="menu h-full">
                   <div class="logo-toggle inline-flex">
-                      <span class="logo"><a href="./">QuestBoost</a></span>
+                      <span class="logo">
+                        <a href="./">QuestBoost</a>
+                      </span>
                       <i class='bx bx-x siderbarClose'></i>
                   </div>
   
-                  <ul class="nav-links">
-                      <li><a href="./">Home</a></li>
-                      <li><a href="">Services <i class="fas fa-caret-down"></i></a>
+                  <ul class="nav-links h-full">
+                      <li class="nav-option h-full" ><a href="./">Home</a></li>
+                      <li class="nav-option h-full"><a href="">Services <i class="fas fa-caret-down"></i></a>
                         <div class="dropdown">
                           <ul class="services">
-                            <li><a href="./translate">Translate</a></li>
-                            <li><a href="./rephrase">Rephrase</a></li>
-                            <li><a href="./question_answer">Question Answerer</a></li>
-                            <li><a href="./summarize">Summarize</a></li>
-                            <li><a href="./question_analyzer">Question Analyzer </a></li>
+                            <li><a class="h-full" href="./linguoBridge">Linguo Bridge</a></li>
+                            <li><a class="h-full" href="./paraSimplify">Para Simplify</a></li>
+                            <li><a class="h-full" href="./summary">Summary</a></li>
+                            <li><a class="h-full" href="./queryMaster">Query Master</a></li>
+                            <li><a class="h-full" href="./ExamInsider">Exam Insider</a></li>
                           </ul>
                         </div>
                       </li>

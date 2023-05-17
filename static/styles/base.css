@@ -76,11 +76,16 @@ nav .nav-bar .logo a {
 .nav-bar .nav-links {
   display: flex;
   align-items: center;
+  /* align-items: stretch; */
+
 }
 
 .nav-bar .nav-links li {
   margin: 0 5px;
   list-style: none;
+}
+.nav-bar .nav-links li:hover {
+  transition-delay: 5s;
 }
 
 .nav-links li a {

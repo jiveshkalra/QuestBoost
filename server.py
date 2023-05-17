@@ -11,8 +11,41 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route("/question_answer")
-def question_answer():
+@app.route("/linguoBridge",methods=["GET"])
+def linguoBridge():
+    if request.method == "GET":
+        query = request.args.get('query')
+        if query == None:
+            return render_template('translate.html')
+        else:
+            print(query.replace("%0D%0A", "\n"))
+            translated = GoogleTranslator(source='auto', target='hi').translate(query.replace("%0D%0A", "\n"))
+        return render_template('translate.html',query=query,translated=translated)
+
+@app.route("/paraSimplify")
+def paraSimplify():
+    if request.method == "GET":
+        query = request.args.get('query')
+        if query == None:
+            return render_template('rephrase.html')
+        else:
+            print(query.replace("%0D%0A", "\n"))
+            paraphrases = AI_models.paraphrase(query,max_length=len(query))
+        return render_template('rephrase.html',query=query,paraphrases=paraphrases)
+    
+@app.route("/summary")
+def summary():
+    if request.method == "GET":
+        query = request.args.get('query')
+        if query == None:
+            return render_template('summarize.html')
+        else:
+            print(query.replace("%0D%0A", "\n"))
+            summary_list=AI_models.summarizer(query,max_length=len(query))
+        return render_template('summarize.html',query=query,summary_list=summary_list)
+    
+@app.route("/queryMaster")
+def queryMaster():
     if request.method == "GET":
         question = request.args.get('question')
         context = request.args.get('context')
@@ -23,43 +56,12 @@ def question_answer():
             print(context)
             answer = AI_models.question_answering(question,context)
             return render_template('question_answer.html',question=question,context=context,answer=answer)
+    
+
 
     
-@app.route("/summarize")
-def summarize():
-    if request.method == "GET":
-        query = request.args.get('query')
-        if query == None:
-            return render_template('summarize.html')
-        else:
-            print(query.replace("%0D%0A", "\n"))
-            summary_list=AI_models.summarizer(query,max_length=len(query))
-        return render_template('summarize.html',query=query,summary_list=summary_list)
-
-@app.route("/rephrase")
-def rephrase():
-    if request.method == "GET":
-        query = request.args.get('query')
-        if query == None:
-            return render_template('rephrase.html')
-        else:
-            print(query.replace("%0D%0A", "\n"))
-            paraphrases = AI_models.paraphrase(query,max_length=len(query))
-        return render_template('rephrase.html',query=query,paraphrases=paraphrases)
-
-@app.route("/translate",methods=["GET"])
-def translate():
-    if request.method == "GET":
-        query = request.args.get('query')
-        if query == None:
-            return render_template('translate.html')
-        else:
-            print(query.replace("%0D%0A", "\n"))
-            translated = GoogleTranslator(source='auto', target='hi').translate(query.replace("%0D%0A", "\n"))
-        return render_template('translate.html',query=query,translated=translated)
-    
-@app.route("/question_analyzer",methods=["GET"])
-def question_analyzer():
+@app.route("/ExamInsider",methods=["GET"])
+def ExamInsider():
     if request.method == "GET":
         subject = request.args.get('subject')
         if subject == None:
