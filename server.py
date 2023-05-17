@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request,url_for
 from deep_translator import GoogleTranslator
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM,pipeline, AutoModelForQuestionAnswering
+from ai_models import summarizer_model
 import openai
+import os
 import json
 
 device = "cpu"
@@ -10,8 +12,18 @@ openai.api_key = "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"
 
 app = Flask(__name__)
 
-def question_analyzer():
-    return url_for('json/english.json')
+def question_analyzer_model(subject):
+    data_files = []
+    data_file_names = os.listdir('static/json/')
+    for file_names in data_file_names:
+        file = os.path.split(file_names)
+        data_files.append(file[0])
+
+    print(data_files)
+    print(subject in data_files)
+    if subject in data_files:
+        print('yes')
+    # return url_for('json/english.json')
 
 def question_answer_model(question,context):
     qa_model_name = "deepset/roberta-base-squad2"
@@ -69,17 +81,6 @@ def paraphrase(
     res = paraphrase_tokenizer.batch_decode(outputs, skip_special_tokens=True)
 
     return res
-
-def summarizer_model(query,max_length=1000):
-    tokenizer = AutoTokenizer.from_pretrained("pszemraj/pegasus-x-large-book-summary")
-    model_1 = AutoModelForSeq2SeqLM.from_pretrained("pszemraj/pegasus-x-large-book-summary")
-    input_ids = tokenizer.encode(query, truncation=True, padding=True, return_tensors="pt")
-    summary_ids = model_1.generate(input_ids, max_length=max_length, num_beams=4, early_stopping=True)
-    summary_1 = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-    model_2 = pipeline("summarization", model="philschmid/bart-large-cnn-samsum")
-    summary_2 = model_2(query)[0]['summary_text']
-    return [summary_1,summary_2]
-
 
 
 @app.route("/")
@@ -153,6 +154,8 @@ def question_analyzer():
         if subject == None:
             return render_template('question_analyzer.html')
         else:
+            print(subject)
+            question_analyzer_model(subject)
             return render_template('question_analyzer.html',subject=subject)
 
 

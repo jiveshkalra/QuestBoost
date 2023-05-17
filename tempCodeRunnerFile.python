@@ -1,0 +1,8 @@
+import json
+
+with open('static/json/english.json') as file:
+  file_contents = file.read()
+  
+print(file_contents)
+
+parsed_json = json.loads(file_contents)
