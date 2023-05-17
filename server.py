@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from ai_models import AI_models
 from deep_translator import GoogleTranslator
 
-device = "cpu"
 AI_models = AI_models()
 app = Flask(__name__)
 

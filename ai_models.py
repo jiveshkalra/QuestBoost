@@ -2,6 +2,8 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM,pipeline, AutoMode
 import os
 import json
 
+device = "cpu"
+
 class AI_models():
     def summarizer(self,query,max_length=1000):
         tokenizer = AutoTokenizer.from_pretrained("pszemraj/pegasus-x-large-book-summary")
