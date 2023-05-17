@@ -13,17 +13,13 @@ openai.api_key = "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"
 app = Flask(__name__)
 
 def question_analyzer_model(subject):
-    data_files = []
-    data_file_names = os.listdir('static/json/')
-    for file_names in data_file_names:
-        file = os.path.split(file_names)
-        data_files.append(file[0])
-
-    print(data_files)
-    print(subject in data_files)
+    data_files = ['eng']
     if subject in data_files:
-        print('yes')
-    # return url_for('json/english.json')
+        json_path = os.path.join('static', 'json', f'{subject}.json')
+        with open(json_path) as file:
+            file_contents = file.read()
+            parsed_json = json.loads(file_contents)
+            return parsed_json
 
 def question_answer_model(question,context):
     qa_model_name = "deepset/roberta-base-squad2"
@@ -155,8 +151,8 @@ def question_analyzer():
             return render_template('question_analyzer.html')
         else:
             print(subject)
-            question_analyzer_model(subject)
-            return render_template('question_analyzer.html',subject=subject)
+            data = question_analyzer_model(subject)
+            return render_template('question_analyzer.html',subject=subject,data=data)
 
 
 if __name__=="__main__":
