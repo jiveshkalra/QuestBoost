@@ -19,6 +19,9 @@
         .f-text{
             color: white;
         }
+        .f-heading{
+            color: white;
+        }
 </style>
 <link rel="stylesheet" href="{{url_for('static',filename='styles/about.css')}}">
     <div class="flex items-center justify-center min-h-screen">
@@ -38,7 +41,7 @@
                 <!-- <p class="max-w-screen-md text-white md:text-xl text-lg lg:text-2xl text-center mx-auto">Features of our product</p> -->
             </div>
             <!-- text - end -->
-
+            <div class="grid grid-cols-1 lg:grid-cols-2">
                 <!-- feature - start -->
                 <div class="flex features border rounded-lg divide-x">
                     <div class="flex items-center text-white p-2 md:p-4">
@@ -46,9 +49,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-
+    
                     <div class="p-4 md:p-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 ">Linguo Bridge</h3>
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 f-heading">Linguo Bridge</h3>
                         <p class="f-text text-white">Translates complex phrases or chapters into another language for better understanding.</p>
                     </div>
                 </div>
@@ -60,9 +63,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-
+    
                     <div class="p-4 md:p-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 ">Para Simplify</h3>
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 f-heading">Para Simplify</h3>
                         <p class="f-text">Generates multiple rephrased versions of input sentences or paragraphs, making them less complex and improving comprehension.</p>
                     </div>
                 </div>
@@ -74,9 +77,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-
+    
                     <div class="p-4 md:p-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 ">Summary</h3>
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 f-heading">Summary</h3>
                         <p class="f-text">Summarizes complex and extensive topics into simpler terms, providing a concise overview for easier understanding.</p>
                     </div>
                 </div>
@@ -88,9 +91,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-
+    
                     <div class="p-4 md:p-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 ">Query Master</h3>
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 f-heading">Query Master</h3>
                         <p class="f-text">Accepts a question and associated context as input and provides the proper answer, assisting students in finding accurate information.</p>
                     </div>
                 </div>
@@ -102,14 +105,16 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-
+    
                     <div class="p-4 md:p-6">
-                        <h3 class="text-lg md:text-xl font-semibold mb-2 ">Exam Insider</h3>
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 f-heading">Exam Insider</h3>
                         <p class="f-text">Identifies important questions from previous years' papers, including their frequency of occurrence, enabling students to focus on essential topics for exam preparation.
                             Planned feature: Option for students to upload sample papers and receive important questions specific to their papers.</p>
                     </div>
                 </div>
                 <!-- feature - end -->
+            </div>
+                
             </div>
         </div>
     </div>
