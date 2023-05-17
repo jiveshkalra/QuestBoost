@@ -158,19 +158,21 @@
                         <span class="sr-only">Question Paper Analyzer</span>
                     </button>
                 </form>
-            {% if subject %}
+            {% if subject and data %}
             <hr class="w-full min-h-0 m-4 divider">
                 <span class="text-4xl content_header m-2 p-2">
-                    Translation
+                    Most Important Questions
                 </span>
+            {% for key,value in data.items() %}
             <div class="result rounded-2xl border-2 m-4 p-4">
                 <span class="result_heading uppercase text-xl md:text-2xl lg:text-3xl">
-                    < HINDI >
+                    < Marks: {{value[0]}} , Frequency {{value[1]}} >
                 </span>
                 <div class="result res-text rounded-2xl border-2 m-4 p-4 bg-white">
-                    {{subject}}
+                    Q: {{key}}
                 </div>
             </div>
+            {% endfor %} 
             {% endif %}
         </div>
     </div>

@@ -152,6 +152,7 @@ def question_analyzer():
         else:
             print(subject)
             data = question_analyzer_model(subject)
+            print(data)
             return render_template('question_analyzer.html',subject=subject,data=data)
 
 
